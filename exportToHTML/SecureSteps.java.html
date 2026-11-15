@@ -1,0 +1,269 @@
+<html>
+<head>
+<title>SecureSteps.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SecureSteps.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">util</span><span class="s2">.</span><span class="s0">Scanner</span><span class="s2">;</span>
+
+<span class="s1">public class </span><span class="s0">SecureSteps </span><span class="s2">{</span>
+
+    <span class="s1">private final </span><span class="s0">Scanner input</span><span class="s2">;</span>
+
+    <span class="s3">// Constructor</span>
+    <span class="s1">public </span><span class="s0">SecureSteps</span><span class="s2">(</span><span class="s0">Scanner input</span><span class="s2">) {</span>
+        <span class="s1">this</span><span class="s2">.</span><span class="s0">input </span><span class="s2">= </span><span class="s0">input</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Runs Scenario D</span>
+    <span class="s1">public void </span><span class="s0">run</span><span class="s2">() {</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== CLARITYAI =====&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Scenario D: SecureSteps&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Fictional Login Simulator&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Do not enter real passwords or codes.&quot;</span><span class="s2">);</span>
+
+        <span class="s3">// STEP 1: Collect fictional login conditions</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span>
+                <span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">Did the password check pass? (true/false): &quot;</span>
+        <span class="s2">);</span>
+        <span class="s1">boolean </span><span class="s0">P </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextBoolean</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span>
+                <span class="s4">&quot;Did second verification pass? (true/false): &quot;</span>
+        <span class="s2">);</span>
+        <span class="s1">boolean </span><span class="s0">V </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextBoolean</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span>
+                <span class="s4">&quot;Is the account unlocked? (true/false): &quot;</span>
+        <span class="s2">);</span>
+        <span class="s1">boolean </span><span class="s0">L </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextBoolean</span><span class="s2">();</span>
+
+        <span class="s3">// STEP 2: Evaluate propositional logic</span>
+        <span class="s3">// AccessGranted = P AND V AND L</span>
+
+        <span class="s1">boolean </span><span class="s0">accessGranted </span><span class="s2">= </span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">and</span><span class="s2">(</span><span class="s0">P</span><span class="s2">, </span><span class="s0">V</span><span class="s2">, </span><span class="s0">L</span><span class="s2">);</span>
+
+        <span class="s3">// Use NOT to check whether access was denied</span>
+        <span class="s1">boolean </span><span class="s0">accessDenied </span><span class="s2">= </span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">not</span><span class="s2">(</span><span class="s0">accessGranted</span><span class="s2">);</span>
+
+        <span class="s3">// Use OR to check whether any condition failed</span>
+        <span class="s1">boolean </span><span class="s0">anyFailedCheck </span><span class="s2">= </span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">or</span><span class="s2">(</span>
+                <span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">not</span><span class="s2">(</span><span class="s0">P</span><span class="s2">),</span>
+                <span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">not</span><span class="s2">(</span><span class="s0">V</span><span class="s2">),</span>
+                <span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">not</span><span class="s2">(</span><span class="s0">L</span><span class="s2">)</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// STEP 3: Display logic results</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== LOGIC RESULTS =====&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;P - Password Passed: &quot; </span><span class="s2">+ </span><span class="s0">P</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;V - Verification Passed: &quot; </span><span class="s2">+ </span><span class="s0">V</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;L - Account Unlocked: &quot; </span><span class="s2">+ </span><span class="s0">L</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">();</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Logical Expression: P &amp;&amp; V &amp;&amp; L&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Access Granted: &quot; </span><span class="s2">+ </span><span class="s0">accessGranted</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Access Denied: &quot; </span><span class="s2">+ </span><span class="s0">accessDenied</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Any Failed Check: &quot; </span><span class="s2">+ </span><span class="s0">anyFailedCheck</span><span class="s2">);</span>
+
+        <span class="s3">// STEP 4: Demonstrate De Morgan's Law</span>
+        <span class="s3">// NOT(P AND V AND L) = NOT P OR NOT V OR NOT L</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== LOGICAL EQUIVALENCE =====&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                <span class="s4">&quot;De Morgan's Law Verified: &quot;</span>
+                        <span class="s2">+ (</span><span class="s0">accessDenied </span><span class="s2">== </span><span class="s0">anyFailedCheck</span><span class="s2">)</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// STEP 5: Explain the evaluation</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== EXPLANATION =====&quot;</span><span class="s2">);</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">accessGranted</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;All required security conditions passed.&quot;</span>
+            <span class="s2">);</span>
+        <span class="s2">} </span><span class="s1">else </span><span class="s2">{</span>
+
+            <span class="s1">if </span><span class="s2">(!</span><span class="s0">P</span><span class="s2">) {</span>
+                <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                        <span class="s4">&quot;- Password check failed.&quot;</span>
+                <span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s1">if </span><span class="s2">(!</span><span class="s0">V</span><span class="s2">) {</span>
+                <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                        <span class="s4">&quot;- Second verification failed.&quot;</span>
+                <span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s1">if </span><span class="s2">(!</span><span class="s0">L</span><span class="s2">) {</span>
+                <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                        <span class="s4">&quot;- Account is locked.&quot;</span>
+                <span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// STEP 6: Display the security decision</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== DECISION =====&quot;</span><span class="s2">);</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">L</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;ACCESS DENIED&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;Next step: Contact support or use account recovery.&quot;</span>
+            <span class="s2">);</span>
+
+        <span class="s2">} </span><span class="s1">else if </span><span class="s2">(!</span><span class="s0">P</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;ACCESS DENIED&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;Next step: Retry the fictional password check.&quot;</span>
+            <span class="s2">);</span>
+
+        <span class="s2">} </span><span class="s1">else if </span><span class="s2">(!</span><span class="s0">V</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;ACCESS DENIED&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;Next step: Use verification recovery.&quot;</span>
+            <span class="s2">);</span>
+
+        <span class="s2">} </span><span class="s1">else </span><span class="s2">{</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;ACCESS GRANTED&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;All security requirements are satisfied.&quot;</span>
+            <span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// STEP 7: Generate the truth table</span>
+        <span class="s0">TruthTable</span><span class="s2">.</span><span class="s0">printSecureStepsTable</span><span class="s2">();</span>
+
+        <span class="s3">// Demonstrate De Morgan's Law for every combination</span>
+        <span class="s0">TruthTable</span><span class="s2">.</span><span class="s0">printDeMorganTable</span><span class="s2">();</span>
+
+        <span class="s3">// STEP 8: Generate the expression tree</span>
+        <span class="s3">// Includes preorder, inorder, and postorder traversals</span>
+
+        <span class="s0">ExpressionTree</span><span class="s2">.</span><span class="s0">showAndTree</span><span class="s2">(</span>
+                <span class="s4">&quot;SECURE STEPS - ACCESS EXPRESSION TREE&quot;</span><span class="s2">,</span>
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span><span class="s4">&quot;P&quot;</span><span class="s2">, </span><span class="s4">&quot;V&quot;</span><span class="s2">, </span><span class="s4">&quot;L&quot;</span><span class="s2">},</span>
+                <span class="s1">new boolean</span><span class="s2">[]{</span><span class="s0">P</span><span class="s2">, </span><span class="s0">V</span><span class="s2">, </span><span class="s0">L</span><span class="s2">}</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// STEP 9: Build the decision tree</span>
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">Node securityTree </span><span class="s2">= </span><span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">sequence</span><span class="s2">(</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;Is the account unlocked (L)?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Did the password check pass (P)?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Did second verification pass (V)?&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new boolean</span><span class="s2">[]{</span>
+                        <span class="s0">L</span><span class="s2">,</span>
+                        <span class="s0">P</span><span class="s2">,</span>
+                        <span class="s0">V</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;ACCESS DENIED: Use account recovery or contact support.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;ACCESS DENIED: Retry the fictional password check.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;ACCESS DENIED: Use verification recovery.&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s4">&quot;ACCESS GRANTED: All security checks passed.&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Display the complete decision tree and chosen path</span>
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">show</span><span class="s2">(</span>
+                <span class="s4">&quot;SECURE STEPS DECISION TREE&quot;</span><span class="s2">,</span>
+                <span class="s0">securityTree</span>
+        <span class="s2">);</span>
+
+<span class="s3">// STEP 10: Build the SecureSteps knowledge graph</span>
+
+        <span class="s0">KnowledgeGraph securityGraph </span><span class="s2">= </span><span class="s1">new </span><span class="s0">KnowledgeGraph</span><span class="s2">();</span>
+
+<span class="s3">// Connect user and account</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;User&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;requests access to&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Account&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Account security requirements</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Account&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;requires&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Password Check&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Account&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;requires&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Second Verification&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Account&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;checks&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Account Lock Status&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Password verification result</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Password Check&quot;</span><span class="s2">,</span>
+                <span class="s0">P </span><span class="s2">? </span><span class="s4">&quot;passed&quot; </span><span class="s2">: </span><span class="s4">&quot;failed&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Access Decision&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Second verification result</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Second Verification&quot;</span><span class="s2">,</span>
+                <span class="s0">V </span><span class="s2">? </span><span class="s4">&quot;passed&quot; </span><span class="s2">: </span><span class="s4">&quot;failed&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Access Decision&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Account lock status</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Account Lock Status&quot;</span><span class="s2">,</span>
+                <span class="s0">L </span><span class="s2">? </span><span class="s4">&quot;unlocked&quot; </span><span class="s2">: </span><span class="s4">&quot;locked&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Access Decision&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Overall access decision</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Account&quot;</span><span class="s2">,</span>
+                <span class="s0">accessGranted </span><span class="s2">? </span><span class="s4">&quot;access granted&quot; </span><span class="s2">: </span><span class="s4">&quot;access denied&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Access Decision&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Account recovery relationship</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Account&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;offers recovery through&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Help Desk&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Display the security knowledge graph</span>
+        <span class="s0">securityGraph</span><span class="s2">.</span><span class="s0">printAdjacencyList</span><span class="s2">(</span>
+                <span class="s4">&quot;SECURE STEPS KNOWLEDGE GRAPH&quot;</span>
+        <span class="s2">);</span>
+
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

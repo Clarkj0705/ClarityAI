@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>KnowledgeGraph.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+KnowledgeGraph.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">util</span><span class="s2">.</span><span class="s0">ArrayList</span><span class="s2">;</span>
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">util</span><span class="s2">.</span><span class="s0">LinkedHashMap</span><span class="s2">;</span>
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">util</span><span class="s2">.</span><span class="s0">List</span><span class="s2">;</span>
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">util</span><span class="s2">.</span><span class="s0">Map</span><span class="s2">;</span>
+
+<span class="s1">public class </span><span class="s0">KnowledgeGraph </span><span class="s2">{</span>
+
+    <span class="s3">// Represents a labeled connection between entities</span>
+    <span class="s1">private static class </span><span class="s0">Edge </span><span class="s2">{</span>
+
+        <span class="s0">String relationship</span><span class="s2">;</span>
+        <span class="s0">String target</span><span class="s2">;</span>
+
+        <span class="s0">Edge</span><span class="s2">(</span><span class="s0">String relationship</span><span class="s2">, </span><span class="s0">String target</span><span class="s2">) {</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">relationship </span><span class="s2">= </span><span class="s0">relationship</span><span class="s2">;</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">target </span><span class="s2">= </span><span class="s0">target</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Store nodes and their outgoing relationships</span>
+    <span class="s1">private final </span><span class="s0">Map</span><span class="s2">&lt;</span><span class="s0">String</span><span class="s2">, </span><span class="s0">List</span><span class="s2">&lt;</span><span class="s0">Edge</span><span class="s2">&gt;&gt; </span><span class="s0">adjacencyList </span><span class="s2">=</span>
+            <span class="s1">new </span><span class="s0">LinkedHashMap</span><span class="s2">&lt;&gt;();</span>
+
+    <span class="s3">// STEP 1: Add a node to the knowledge graph</span>
+    <span class="s1">public void </span><span class="s0">addNode</span><span class="s2">(</span><span class="s0">String name</span><span class="s2">) {</span>
+
+        <span class="s0">adjacencyList</span><span class="s2">.</span><span class="s0">putIfAbsent</span><span class="s2">(</span>
+                <span class="s0">name</span><span class="s2">,</span>
+                <span class="s1">new </span><span class="s0">ArrayList</span><span class="s2">&lt;&gt;()</span>
+        <span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// STEP 2: Add a labeled relationship</span>
+    <span class="s1">public void </span><span class="s0">addRelationship</span><span class="s2">(</span>
+            <span class="s0">String from</span><span class="s2">,</span>
+            <span class="s0">String relationship</span><span class="s2">,</span>
+            <span class="s0">String to</span><span class="s2">) {</span>
+
+        <span class="s3">// Ensure both nodes exist</span>
+        <span class="s0">addNode</span><span class="s2">(</span><span class="s0">from</span><span class="s2">);</span>
+        <span class="s0">addNode</span><span class="s2">(</span><span class="s0">to</span><span class="s2">);</span>
+
+        <span class="s3">// Create an edge from one node to another</span>
+        <span class="s0">adjacencyList</span><span class="s2">.</span><span class="s0">get</span><span class="s2">(</span><span class="s0">from</span><span class="s2">).</span><span class="s0">add</span><span class="s2">(</span>
+                <span class="s1">new </span><span class="s0">Edge</span><span class="s2">(</span><span class="s0">relationship</span><span class="s2">, </span><span class="s0">to</span><span class="s2">)</span>
+        <span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// STEP 3: Display the adjacency list</span>
+    <span class="s1">public void </span><span class="s0">printAdjacencyList</span><span class="s2">(</span><span class="s0">String title</span><span class="s2">) {</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== &quot; </span><span class="s2">+ </span><span class="s0">title </span><span class="s2">+ </span><span class="s4">&quot; =====&quot;</span><span class="s2">);</span>
+
+        <span class="s1">for </span><span class="s2">(</span><span class="s0">Map</span><span class="s2">.</span><span class="s0">Entry</span><span class="s2">&lt;</span><span class="s0">String</span><span class="s2">, </span><span class="s0">List</span><span class="s2">&lt;</span><span class="s0">Edge</span><span class="s2">&gt;&gt; </span><span class="s0">entry </span><span class="s2">:</span>
+                <span class="s0">adjacencyList</span><span class="s2">.</span><span class="s0">entrySet</span><span class="s2">()) {</span>
+
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s0">entry</span><span class="s2">.</span><span class="s0">getKey</span><span class="s2">() + </span><span class="s4">&quot;:&quot;</span><span class="s2">);</span>
+
+            <span class="s1">if </span><span class="s2">(</span><span class="s0">entry</span><span class="s2">.</span><span class="s0">getValue</span><span class="s2">().</span><span class="s0">isEmpty</span><span class="s2">()) {</span>
+                <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                        <span class="s4">&quot;  (no outgoing relationships)&quot;</span>
+                <span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s1">for </span><span class="s2">(</span><span class="s0">Edge edge </span><span class="s2">: </span><span class="s0">entry</span><span class="s2">.</span><span class="s0">getValue</span><span class="s2">()) {</span>
+
+                <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                        <span class="s4">&quot;  --[&quot; </span><span class="s2">+ </span><span class="s0">edge</span><span class="s2">.</span><span class="s0">relationship </span><span class="s2">+</span>
+                                <span class="s4">&quot;]--&gt; &quot; </span><span class="s2">+ </span><span class="s0">edge</span><span class="s2">.</span><span class="s0">target</span>
+                <span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

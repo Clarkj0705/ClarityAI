@@ -1,0 +1,569 @@
+<html>
+<head>
+<title>CampusRoute.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CampusRoute.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">util</span><span class="s2">.</span><span class="s0">Scanner</span><span class="s2">;</span>
+
+<span class="s1">public class </span><span class="s0">CampusRoute </span><span class="s2">{</span>
+
+    <span class="s1">private final </span><span class="s0">Scanner input</span><span class="s2">;</span>
+
+    <span class="s3">// Constructor</span>
+    <span class="s1">public </span><span class="s0">CampusRoute</span><span class="s2">(</span><span class="s0">Scanner input</span><span class="s2">) {</span>
+        <span class="s1">this</span><span class="s2">.</span><span class="s0">input </span><span class="s2">= </span><span class="s0">input</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Runs Scenario A</span>
+    <span class="s1">public void </span><span class="s0">run</span><span class="s2">() {</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== CLARITYAI =====&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Scenario A: CampusRoute&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Campus Transportation Decision System&quot;</span><span class="s2">);</span>
+
+        <span class="s3">// STEP 1: General transportation information</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">Enter your budget: $&quot;</span><span class="s2">);</span>
+        <span class="s1">double </span><span class="s0">budget </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextDouble</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Minutes until arrival deadline: &quot;</span><span class="s2">);</span>
+        <span class="s1">int </span><span class="s0">deadline </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Are walking conditions acceptable? (true/false): &quot;</span><span class="s2">);</span>
+        <span class="s1">boolean </span><span class="s0">W </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextBoolean</span><span class="s2">();</span>
+
+        <span class="s3">// STEP 2: Train information</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">--- TRAIN ---&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Is the train operating? (true/false): &quot;</span><span class="s2">);</span>
+        <span class="s1">boolean </span><span class="s0">T </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextBoolean</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Train fare: $&quot;</span><span class="s2">);</span>
+        <span class="s1">double </span><span class="s0">trainFare </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextDouble</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Train travel time (minutes): &quot;</span><span class="s2">);</span>
+        <span class="s1">int </span><span class="s0">trainTime </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Train walking time (minutes): &quot;</span><span class="s2">);</span>
+        <span class="s1">int </span><span class="s0">trainWalk </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+        <span class="s3">// STEP 3: Bus information</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">--- BUS ---&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Is the bus operating? (true/false): &quot;</span><span class="s2">);</span>
+        <span class="s1">boolean </span><span class="s0">B </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextBoolean</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Bus fare: $&quot;</span><span class="s2">);</span>
+        <span class="s1">double </span><span class="s0">busFare </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextDouble</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Bus travel time (minutes): &quot;</span><span class="s2">);</span>
+        <span class="s1">int </span><span class="s0">busTime </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Bus walking time (minutes): &quot;</span><span class="s2">);</span>
+        <span class="s1">int </span><span class="s0">busWalk </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+        <span class="s3">// STEP 4: Backup ride information</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">--- BACKUP RIDE ---&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Is a backup ride available? (true/false): &quot;</span><span class="s2">);</span>
+        <span class="s1">boolean </span><span class="s0">R </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextBoolean</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Backup ride fare: $&quot;</span><span class="s2">);</span>
+        <span class="s1">double </span><span class="s0">rideFare </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextDouble</span><span class="s2">();</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Backup ride time (minutes): &quot;</span><span class="s2">);</span>
+        <span class="s1">int </span><span class="s0">rideTime </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+        <span class="s3">// STEP 5: Calculate travel times</span>
+        <span class="s1">int </span><span class="s0">trainTotal </span><span class="s2">= </span><span class="s0">trainTime </span><span class="s2">+ </span><span class="s0">trainWalk</span><span class="s2">;</span>
+        <span class="s1">int </span><span class="s0">busTotal </span><span class="s2">= </span><span class="s0">busTime </span><span class="s2">+ </span><span class="s0">busWalk</span><span class="s2">;</span>
+
+        <span class="s3">// Define Boolean propositions</span>
+        <span class="s1">boolean </span><span class="s0">F_train </span><span class="s2">= </span><span class="s0">trainFare </span><span class="s2">&lt;= </span><span class="s0">budget</span><span class="s2">;</span>
+        <span class="s1">boolean </span><span class="s0">D_train </span><span class="s2">= </span><span class="s0">trainTotal </span><span class="s2">&lt;= </span><span class="s0">deadline</span><span class="s2">;</span>
+
+        <span class="s1">boolean </span><span class="s0">F_bus </span><span class="s2">= </span><span class="s0">busFare </span><span class="s2">&lt;= </span><span class="s0">budget</span><span class="s2">;</span>
+        <span class="s1">boolean </span><span class="s0">D_bus </span><span class="s2">= </span><span class="s0">busTotal </span><span class="s2">&lt;= </span><span class="s0">deadline</span><span class="s2">;</span>
+
+        <span class="s1">boolean </span><span class="s0">F_ride </span><span class="s2">= </span><span class="s0">rideFare </span><span class="s2">&lt;= </span><span class="s0">budget</span><span class="s2">;</span>
+        <span class="s1">boolean </span><span class="s0">D_ride </span><span class="s2">= </span><span class="s0">rideTime </span><span class="s2">&lt;= </span><span class="s0">deadline</span><span class="s2">;</span>
+
+        <span class="s3">// Evaluate transportation eligibility using LogicEngine</span>
+        <span class="s1">boolean </span><span class="s0">trainEligible </span><span class="s2">= </span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">and</span><span class="s2">(</span>
+                <span class="s0">T</span><span class="s2">, </span><span class="s0">F_train</span><span class="s2">, </span><span class="s0">D_train</span><span class="s2">, </span><span class="s0">W</span>
+        <span class="s2">);</span>
+
+        <span class="s1">boolean </span><span class="s0">busEligible </span><span class="s2">= </span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">and</span><span class="s2">(</span>
+                <span class="s0">B</span><span class="s2">, </span><span class="s0">F_bus</span><span class="s2">, </span><span class="s0">D_bus</span>
+        <span class="s2">);</span>
+
+        <span class="s1">boolean </span><span class="s0">rideEligible </span><span class="s2">= </span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">and</span><span class="s2">(</span>
+                <span class="s0">R</span><span class="s2">, </span><span class="s0">F_ride</span><span class="s2">, </span><span class="s0">D_ride</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Check whether any transportation option qualifies</span>
+        <span class="s1">boolean </span><span class="s0">anyEligible </span><span class="s2">= </span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">or</span><span class="s2">(</span>
+                <span class="s0">trainEligible</span><span class="s2">,</span>
+                <span class="s0">busEligible</span><span class="s2">,</span>
+                <span class="s0">rideEligible</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// STEP 6: Display logic results</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== LOGIC RESULTS =====&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Train Eligible: &quot; </span><span class="s2">+ </span><span class="s0">trainEligible</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Bus Eligible: &quot; </span><span class="s2">+ </span><span class="s0">busEligible</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Ride Eligible: &quot; </span><span class="s2">+ </span><span class="s0">rideEligible</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Any Option Eligible: &quot; </span><span class="s2">+ </span><span class="s0">anyEligible</span><span class="s2">);</span>
+
+        <span class="s3">// Explain which conditions passed or failed</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== EXPLANATION =====&quot;</span><span class="s2">);</span>
+
+        <span class="s3">// Train explanations</span>
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">T</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Train: Service is not operating.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">F_train</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Train: Fare exceeds budget.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">D_train</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Train: Arrival misses deadline.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">W</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;Train: Walking conditions are unacceptable.&quot;</span>
+            <span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Bus explanations</span>
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">B</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Bus: Service is not operating.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">F_bus</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Bus: Fare exceeds budget.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">D_bus</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Bus: Arrival misses deadline.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Backup ride explanations</span>
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">R</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Backup ride: Ride is unavailable.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">F_ride</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Backup ride: Fare exceeds budget.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(!</span><span class="s0">D_ride</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Backup ride: Arrival misses deadline.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Explain successful conditions</span>
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">trainEligible</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Train: All conditions passed.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">busEligible</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Bus: All conditions passed.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">rideEligible</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Backup ride: All conditions passed.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// STEP 7: Select transportation priority</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">Choose your priority:&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;1. Lowest Cost&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;2. Shortest Time&quot;</span><span class="s2">);</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Enter choice (1 or 2): &quot;</span><span class="s2">);</span>
+
+        <span class="s1">int </span><span class="s0">priority </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">priority </span><span class="s2">!= </span><span class="s5">1 </span><span class="s2">&amp;&amp; </span><span class="s0">priority </span><span class="s2">!= </span><span class="s5">2</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;Invalid priority. Enter 1 or 2 next time.&quot;</span>
+            <span class="s2">);</span>
+            <span class="s1">return</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Find the best eligible transportation option</span>
+        <span class="s0">String bestOption </span><span class="s2">= </span><span class="s4">&quot;None&quot;</span><span class="s2">;</span>
+        <span class="s1">double </span><span class="s0">bestScore </span><span class="s2">= </span><span class="s0">Double</span><span class="s2">.</span><span class="s0">MAX_VALUE</span><span class="s2">;</span>
+
+        <span class="s3">// Compare train</span>
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">trainEligible</span><span class="s2">) {</span>
+            <span class="s0">bestOption </span><span class="s2">= </span><span class="s4">&quot;Train&quot;</span><span class="s2">;</span>
+
+            <span class="s0">bestScore </span><span class="s2">= (</span><span class="s0">priority </span><span class="s2">== </span><span class="s5">1</span><span class="s2">)</span>
+                    <span class="s2">? </span><span class="s0">trainFare </span><span class="s2">: </span><span class="s0">trainTotal</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Compare bus</span>
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">busEligible</span><span class="s2">) {</span>
+            <span class="s1">double </span><span class="s0">score </span><span class="s2">= (</span><span class="s0">priority </span><span class="s2">== </span><span class="s5">1</span><span class="s2">)</span>
+                    <span class="s2">? </span><span class="s0">busFare </span><span class="s2">: </span><span class="s0">busTotal</span><span class="s2">;</span>
+
+            <span class="s1">if </span><span class="s2">(</span><span class="s0">score </span><span class="s2">&lt; </span><span class="s0">bestScore</span><span class="s2">) {</span>
+                <span class="s0">bestScore </span><span class="s2">= </span><span class="s0">score</span><span class="s2">;</span>
+                <span class="s0">bestOption </span><span class="s2">= </span><span class="s4">&quot;Bus&quot;</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Compare backup ride</span>
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">rideEligible</span><span class="s2">) {</span>
+            <span class="s1">double </span><span class="s0">score </span><span class="s2">= (</span><span class="s0">priority </span><span class="s2">== </span><span class="s5">1</span><span class="s2">)</span>
+                    <span class="s2">? </span><span class="s0">rideFare </span><span class="s2">: </span><span class="s0">rideTime</span><span class="s2">;</span>
+
+            <span class="s1">if </span><span class="s2">(</span><span class="s0">score </span><span class="s2">&lt; </span><span class="s0">bestScore</span><span class="s2">) {</span>
+                <span class="s0">bestScore </span><span class="s2">= </span><span class="s0">score</span><span class="s2">;</span>
+                <span class="s0">bestOption </span><span class="s2">= </span><span class="s4">&quot;Backup Ride&quot;</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Display final recommendation</span>
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">===== RECOMMENDATION =====&quot;</span><span class="s2">);</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">LogicEngine</span><span class="s2">.</span><span class="s0">not</span><span class="s2">(</span><span class="s0">anyEligible</span><span class="s2">)) {</span>
+
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;No transportation option qualifies.&quot;</span>
+            <span class="s2">);</span>
+
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s4">&quot;Review your budget, service, and deadline.&quot;</span>
+            <span class="s2">);</span>
+
+        <span class="s2">} </span><span class="s1">else </span><span class="s2">{</span>
+
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Recommended: &quot; </span><span class="s2">+ </span><span class="s0">bestOption</span><span class="s2">);</span>
+
+            <span class="s1">if </span><span class="s2">(</span><span class="s0">priority </span><span class="s2">== </span><span class="s5">1</span><span class="s2">) {</span>
+                <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                        <span class="s4">&quot;Reason: Lowest cost among eligible options.&quot;</span>
+                <span class="s2">);</span>
+            <span class="s2">} </span><span class="s1">else </span><span class="s2">{</span>
+                <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                        <span class="s4">&quot;Reason: Shortest time among eligible options.&quot;</span>
+                <span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// STEP 8: Generate the CampusRoute truth table</span>
+        <span class="s0">TruthTable</span><span class="s2">.</span><span class="s0">printCampusRouteTrainTable</span><span class="s2">();</span>
+
+        <span class="s3">// STEP 9: Generate expression trees and traversals</span>
+
+        <span class="s3">// Train expression tree</span>
+        <span class="s0">ExpressionTree</span><span class="s2">.</span><span class="s0">showAndTree</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE - TRAIN EXPRESSION TREE&quot;</span><span class="s2">,</span>
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span><span class="s4">&quot;T&quot;</span><span class="s2">, </span><span class="s4">&quot;F&quot;</span><span class="s2">, </span><span class="s4">&quot;D&quot;</span><span class="s2">, </span><span class="s4">&quot;W&quot;</span><span class="s2">},</span>
+                <span class="s1">new boolean</span><span class="s2">[]{</span><span class="s0">T</span><span class="s2">, </span><span class="s0">F_train</span><span class="s2">, </span><span class="s0">D_train</span><span class="s2">, </span><span class="s0">W</span><span class="s2">}</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Bus expression tree</span>
+        <span class="s0">ExpressionTree</span><span class="s2">.</span><span class="s0">showAndTree</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE - BUS EXPRESSION TREE&quot;</span><span class="s2">,</span>
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span><span class="s4">&quot;B&quot;</span><span class="s2">, </span><span class="s4">&quot;F_bus&quot;</span><span class="s2">, </span><span class="s4">&quot;D_bus&quot;</span><span class="s2">},</span>
+                <span class="s1">new boolean</span><span class="s2">[]{</span><span class="s0">B</span><span class="s2">, </span><span class="s0">F_bus</span><span class="s2">, </span><span class="s0">D_bus</span><span class="s2">}</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Backup ride expression tree</span>
+        <span class="s0">ExpressionTree</span><span class="s2">.</span><span class="s0">showAndTree</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE - RIDE EXPRESSION TREE&quot;</span><span class="s2">,</span>
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span><span class="s4">&quot;R&quot;</span><span class="s2">, </span><span class="s4">&quot;F_ride&quot;</span><span class="s2">, </span><span class="s4">&quot;D_ride&quot;</span><span class="s2">},</span>
+                <span class="s1">new boolean</span><span class="s2">[]{</span><span class="s0">R</span><span class="s2">, </span><span class="s0">F_ride</span><span class="s2">, </span><span class="s0">D_ride</span><span class="s2">}</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// STEP 10: Build the transportation decision trees</span>
+
+        <span class="s3">// Train decision tree</span>
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">Node trainTree </span><span class="s2">= </span><span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">sequence</span><span class="s2">(</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;Is the train operating?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Is the train fare within budget?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Will the train meet the deadline?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Are walking conditions acceptable?&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new boolean</span><span class="s2">[]{</span>
+                        <span class="s0">T</span><span class="s2">,</span>
+                        <span class="s0">F_train</span><span class="s2">,</span>
+                        <span class="s0">D_train</span><span class="s2">,</span>
+                        <span class="s0">W</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;Train unavailable.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Train fare exceeds budget.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Train arrives too late.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Walking conditions are unacceptable.&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s4">&quot;Train is eligible.&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">show</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE - TRAIN DECISION TREE&quot;</span><span class="s2">,</span>
+                <span class="s0">trainTree</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Bus decision tree</span>
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">Node busTree </span><span class="s2">= </span><span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">sequence</span><span class="s2">(</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;Is the bus operating?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Is the bus fare within budget?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Will the bus meet the deadline?&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new boolean</span><span class="s2">[]{</span>
+                        <span class="s0">B</span><span class="s2">,</span>
+                        <span class="s0">F_bus</span><span class="s2">,</span>
+                        <span class="s0">D_bus</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;Bus unavailable.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Bus fare exceeds budget.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Bus arrives too late.&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s4">&quot;Bus is eligible.&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">show</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE - BUS DECISION TREE&quot;</span><span class="s2">,</span>
+                <span class="s0">busTree</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Backup ride decision tree</span>
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">Node rideTree </span><span class="s2">= </span><span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">sequence</span><span class="s2">(</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;Is a backup ride available?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Is the ride fare within budget?&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Will the ride meet the deadline?&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new boolean</span><span class="s2">[]{</span>
+                        <span class="s0">R</span><span class="s2">,</span>
+                        <span class="s0">F_ride</span><span class="s2">,</span>
+                        <span class="s0">D_ride</span>
+                <span class="s2">},</span>
+
+                <span class="s1">new </span><span class="s0">String</span><span class="s2">[]{</span>
+                        <span class="s4">&quot;Backup ride unavailable.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Backup ride fare exceeds budget.&quot;</span><span class="s2">,</span>
+                        <span class="s4">&quot;Backup ride arrives too late.&quot;</span>
+                <span class="s2">},</span>
+
+                <span class="s4">&quot;Backup ride is eligible.&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">show</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE - RIDE DECISION TREE&quot;</span><span class="s2">,</span>
+                <span class="s0">rideTree</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// STEP 11: Build the final recommendation decision tree</span>
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">Node finalTree </span><span class="s2">= </span><span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">question</span><span class="s2">(</span>
+
+                <span class="s4">&quot;Is any transportation option eligible?&quot;</span><span class="s2">,</span>
+                <span class="s0">anyEligible</span><span class="s2">,</span>
+
+                <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">question</span><span class="s2">(</span>
+                        <span class="s4">&quot;Is lowest cost the priority?&quot;</span><span class="s2">,</span>
+                        <span class="s0">priority </span><span class="s2">== </span><span class="s5">1</span><span class="s2">,</span>
+
+                        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">result</span><span class="s2">(</span>
+                                <span class="s4">&quot;Recommend &quot; </span><span class="s2">+ </span><span class="s0">bestOption </span><span class="s2">+</span>
+                                        <span class="s4">&quot;: Lowest cost among eligible options.&quot;</span>
+                        <span class="s2">),</span>
+
+                        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">result</span><span class="s2">(</span>
+                                <span class="s4">&quot;Recommend &quot; </span><span class="s2">+ </span><span class="s0">bestOption </span><span class="s2">+</span>
+                                        <span class="s4">&quot;: Shortest time among eligible options.&quot;</span>
+                        <span class="s2">)</span>
+                <span class="s2">),</span>
+
+                <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">result</span><span class="s2">(</span>
+                        <span class="s4">&quot;No transportation option qualifies.&quot;</span>
+                <span class="s2">)</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Display final decision tree</span>
+        <span class="s0">DecisionTree</span><span class="s2">.</span><span class="s0">show</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE - FINAL RECOMMENDATION&quot;</span><span class="s2">,</span>
+                <span class="s0">finalTree</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// STEP 12: Build the CampusRoute knowledge graph</span>
+
+        <span class="s0">KnowledgeGraph campusGraph </span><span class="s2">= </span><span class="s1">new </span><span class="s0">KnowledgeGraph</span><span class="s2">();</span>
+
+        <span class="s3">// Create nodes for student constraints</span>
+        <span class="s0">String budgetNode </span><span class="s2">= </span><span class="s0">String</span><span class="s2">.</span><span class="s0">format</span><span class="s2">(</span><span class="s4">&quot;Budget: $%.2f&quot;</span><span class="s2">, </span><span class="s0">budget</span><span class="s2">);</span>
+        <span class="s0">String deadlineNode </span><span class="s2">= </span><span class="s4">&quot;Time Available: &quot; </span><span class="s2">+ </span><span class="s0">deadline </span><span class="s2">+ </span><span class="s4">&quot; minutes&quot;</span><span class="s2">;</span>
+
+        <span class="s3">// Student relationships</span>
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Student&quot;</span><span class="s2">, </span><span class="s4">&quot;travels to&quot;</span><span class="s2">, </span><span class="s4">&quot;Campus&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Student&quot;</span><span class="s2">, </span><span class="s4">&quot;has&quot;</span><span class="s2">, </span><span class="s0">budgetNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Student&quot;</span><span class="s2">, </span><span class="s4">&quot;must arrive within&quot;</span><span class="s2">, </span><span class="s0">deadlineNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Student&quot;</span><span class="s2">, </span><span class="s4">&quot;considers&quot;</span><span class="s2">, </span><span class="s4">&quot;Train&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Student&quot;</span><span class="s2">, </span><span class="s4">&quot;considers&quot;</span><span class="s2">, </span><span class="s4">&quot;Bus&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Student&quot;</span><span class="s2">, </span><span class="s4">&quot;considers&quot;</span><span class="s2">, </span><span class="s4">&quot;Backup Ride&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Train relationships</span>
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Train&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;fare&quot;</span><span class="s2">,</span>
+                <span class="s0">String</span><span class="s2">.</span><span class="s0">format</span><span class="s2">(</span><span class="s4">&quot;Train Fare: $%.2f&quot;</span><span class="s2">, </span><span class="s0">trainFare</span><span class="s2">)</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Train&quot;</span><span class="s2">,</span>
+                <span class="s0">T </span><span class="s2">? </span><span class="s4">&quot;service operating&quot; </span><span class="s2">: </span><span class="s4">&quot;service unavailable&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Campus&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Train&quot;</span><span class="s2">,</span>
+                <span class="s0">F_train </span><span class="s2">? </span><span class="s4">&quot;within budget&quot; </span><span class="s2">: </span><span class="s4">&quot;over budget&quot;</span><span class="s2">,</span>
+                <span class="s0">budgetNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Train&quot;</span><span class="s2">,</span>
+                <span class="s0">D_train </span><span class="s2">? </span><span class="s4">&quot;meets deadline&quot; </span><span class="s2">: </span><span class="s4">&quot;misses deadline&quot;</span><span class="s2">,</span>
+                <span class="s0">deadlineNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Train&quot;</span><span class="s2">,</span>
+                <span class="s0">W </span><span class="s2">? </span><span class="s4">&quot;walking acceptable&quot; </span><span class="s2">: </span><span class="s4">&quot;walking unacceptable&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Weather&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Train&quot;</span><span class="s2">,</span>
+                <span class="s0">trainEligible </span><span class="s2">? </span><span class="s4">&quot;eligible&quot; </span><span class="s2">: </span><span class="s4">&quot;ineligible&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Recommendation&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s3">// Bus relationships</span>
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Bus&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;fare&quot;</span><span class="s2">,</span>
+                <span class="s0">String</span><span class="s2">.</span><span class="s0">format</span><span class="s2">(</span><span class="s4">&quot;Bus Fare: $%.2f&quot;</span><span class="s2">, </span><span class="s0">busFare</span><span class="s2">)</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Bus&quot;</span><span class="s2">,</span>
+                <span class="s0">B </span><span class="s2">? </span><span class="s4">&quot;service operating&quot; </span><span class="s2">: </span><span class="s4">&quot;service unavailable&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Campus&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Bus&quot;</span><span class="s2">,</span>
+                <span class="s0">F_bus </span><span class="s2">? </span><span class="s4">&quot;within budget&quot; </span><span class="s2">: </span><span class="s4">&quot;over budget&quot;</span><span class="s2">,</span>
+                <span class="s0">budgetNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Bus&quot;</span><span class="s2">,</span>
+                <span class="s0">D_bus </span><span class="s2">? </span><span class="s4">&quot;meets deadline&quot; </span><span class="s2">: </span><span class="s4">&quot;misses deadline&quot;</span><span class="s2">,</span>
+                <span class="s0">deadlineNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Bus&quot;</span><span class="s2">,</span>
+                <span class="s0">busEligible </span><span class="s2">? </span><span class="s4">&quot;eligible&quot; </span><span class="s2">: </span><span class="s4">&quot;ineligible&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Recommendation&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Backup ride relationships</span>
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Backup Ride&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;fare&quot;</span><span class="s2">,</span>
+                <span class="s0">String</span><span class="s2">.</span><span class="s0">format</span><span class="s2">(</span><span class="s4">&quot;Ride Fare: $%.2f&quot;</span><span class="s2">, </span><span class="s0">rideFare</span><span class="s2">)</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Backup Ride&quot;</span><span class="s2">,</span>
+                <span class="s0">R </span><span class="s2">? </span><span class="s4">&quot;available&quot; </span><span class="s2">: </span><span class="s4">&quot;unavailable&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Campus&quot;</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Backup Ride&quot;</span><span class="s2">,</span>
+                <span class="s0">F_ride </span><span class="s2">? </span><span class="s4">&quot;within budget&quot; </span><span class="s2">: </span><span class="s4">&quot;over budget&quot;</span><span class="s2">,</span>
+                <span class="s0">budgetNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Backup Ride&quot;</span><span class="s2">,</span>
+                <span class="s0">D_ride </span><span class="s2">? </span><span class="s4">&quot;meets deadline&quot; </span><span class="s2">: </span><span class="s4">&quot;misses deadline&quot;</span><span class="s2">,</span>
+                <span class="s0">deadlineNode</span>
+        <span class="s2">);</span>
+
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Backup Ride&quot;</span><span class="s2">,</span>
+                <span class="s0">rideEligible </span><span class="s2">? </span><span class="s4">&quot;eligible&quot; </span><span class="s2">: </span><span class="s4">&quot;ineligible&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;Recommendation&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Connect the final recommendation</span>
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">addRelationship</span><span class="s2">(</span>
+                <span class="s4">&quot;Recommendation&quot;</span><span class="s2">,</span>
+                <span class="s4">&quot;selects&quot;</span><span class="s2">,</span>
+                <span class="s0">anyEligible </span><span class="s2">? </span><span class="s0">bestOption </span><span class="s2">: </span><span class="s4">&quot;No eligible transportation&quot;</span>
+        <span class="s2">);</span>
+
+<span class="s3">// Display the CampusRoute knowledge graph</span>
+        <span class="s0">campusGraph</span><span class="s2">.</span><span class="s0">printAdjacencyList</span><span class="s2">(</span>
+                <span class="s4">&quot;CAMPUS ROUTE KNOWLEDGE GRAPH&quot;</span>
+        <span class="s2">);</span>
+
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

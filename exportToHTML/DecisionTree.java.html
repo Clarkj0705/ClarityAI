@@ -1,0 +1,148 @@
+<html>
+<head>
+<title>DecisionTree.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #2aacb8;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DecisionTree.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">public class </span><span class="s0">DecisionTree </span><span class="s2">{</span>
+
+    <span class="s3">// Represents a question or a final decision</span>
+    <span class="s1">public static class </span><span class="s0">Node </span><span class="s2">{</span>
+
+        <span class="s1">private final </span><span class="s0">String text</span><span class="s2">;</span>
+        <span class="s1">private final boolean </span><span class="s0">answer</span><span class="s2">;</span>
+        <span class="s1">private final </span><span class="s0">Node yesBranch</span><span class="s2">;</span>
+        <span class="s1">private final </span><span class="s0">Node noBranch</span><span class="s2">;</span>
+        <span class="s1">private final boolean </span><span class="s0">leaf</span><span class="s2">;</span>
+
+        <span class="s1">private </span><span class="s0">Node</span><span class="s2">(</span><span class="s0">String text</span><span class="s2">, </span><span class="s1">boolean </span><span class="s0">answer</span><span class="s2">,</span>
+                     <span class="s0">Node yesBranch</span><span class="s2">, </span><span class="s0">Node noBranch</span><span class="s2">,</span>
+                     <span class="s1">boolean </span><span class="s0">leaf</span><span class="s2">) {</span>
+
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">text </span><span class="s2">= </span><span class="s0">text</span><span class="s2">;</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">answer </span><span class="s2">= </span><span class="s0">answer</span><span class="s2">;</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">yesBranch </span><span class="s2">= </span><span class="s0">yesBranch</span><span class="s2">;</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">noBranch </span><span class="s2">= </span><span class="s0">noBranch</span><span class="s2">;</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">leaf </span><span class="s2">= </span><span class="s0">leaf</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Create a question with YES and NO branches</span>
+    <span class="s1">public static </span><span class="s0">Node question</span><span class="s2">(</span><span class="s0">String text</span><span class="s2">,</span>
+                                <span class="s1">boolean </span><span class="s0">answer</span><span class="s2">,</span>
+                                <span class="s0">Node yesBranch</span><span class="s2">,</span>
+                                <span class="s0">Node noBranch</span><span class="s2">) {</span>
+
+        <span class="s1">return new </span><span class="s0">Node</span><span class="s2">(</span>
+                <span class="s0">text</span><span class="s2">, </span><span class="s0">answer</span><span class="s2">, </span><span class="s0">yesBranch</span><span class="s2">, </span><span class="s0">noBranch</span><span class="s2">, </span><span class="s1">false</span>
+        <span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Create a final result (leaf node)</span>
+    <span class="s1">public static </span><span class="s0">Node result</span><span class="s2">(</span><span class="s0">String text</span><span class="s2">) {</span>
+
+        <span class="s1">return new </span><span class="s0">Node</span><span class="s2">(</span>
+                <span class="s0">text</span><span class="s2">, </span><span class="s1">false</span><span class="s2">, </span><span class="s1">null</span><span class="s2">, </span><span class="s1">null</span><span class="s2">, </span><span class="s1">true</span>
+        <span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Build a sequence of decision questions</span>
+    <span class="s1">public static </span><span class="s0">Node sequence</span><span class="s2">(</span><span class="s0">String</span><span class="s2">[] </span><span class="s0">questions</span><span class="s2">,</span>
+                                <span class="s1">boolean</span><span class="s2">[] </span><span class="s0">answers</span><span class="s2">,</span>
+                                <span class="s0">String</span><span class="s2">[] </span><span class="s0">failures</span><span class="s2">,</span>
+                                <span class="s0">String success</span><span class="s2">) {</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">questions</span><span class="s2">.</span><span class="s0">length </span><span class="s2">== </span><span class="s4">0 </span><span class="s2">||</span>
+                <span class="s0">questions</span><span class="s2">.</span><span class="s0">length </span><span class="s2">!= </span><span class="s0">answers</span><span class="s2">.</span><span class="s0">length </span><span class="s2">||</span>
+                <span class="s0">questions</span><span class="s2">.</span><span class="s0">length </span><span class="s2">!= </span><span class="s0">failures</span><span class="s2">.</span><span class="s0">length</span><span class="s2">) {</span>
+
+            <span class="s1">throw new </span><span class="s0">IllegalArgumentException</span><span class="s2">(</span>
+                    <span class="s5">&quot;Question, answer, and failure arrays must match.&quot;</span>
+            <span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s0">Node tree </span><span class="s2">= </span><span class="s0">result</span><span class="s2">(</span><span class="s0">success</span><span class="s2">);</span>
+
+        <span class="s3">// Build the tree backward</span>
+        <span class="s1">for </span><span class="s2">(</span><span class="s1">int </span><span class="s0">i </span><span class="s2">= </span><span class="s0">questions</span><span class="s2">.</span><span class="s0">length </span><span class="s2">- </span><span class="s4">1</span><span class="s2">; </span><span class="s0">i </span><span class="s2">&gt;= </span><span class="s4">0</span><span class="s2">; </span><span class="s0">i</span><span class="s2">--) {</span>
+
+            <span class="s0">tree </span><span class="s2">= </span><span class="s0">question</span><span class="s2">(</span>
+                    <span class="s0">questions</span><span class="s2">[</span><span class="s0">i</span><span class="s2">],</span>
+                    <span class="s0">answers</span><span class="s2">[</span><span class="s0">i</span><span class="s2">],</span>
+                    <span class="s0">tree</span><span class="s2">,</span>
+                    <span class="s0">result</span><span class="s2">(</span><span class="s0">failures</span><span class="s2">[</span><span class="s0">i</span><span class="s2">])</span>
+            <span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">return </span><span class="s0">tree</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Display tree and evaluate current inputs</span>
+    <span class="s1">public static </span><span class="s0">String show</span><span class="s2">(</span><span class="s0">String title</span><span class="s2">, </span><span class="s0">Node root</span><span class="s2">) {</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s5">&quot;</span><span class="s1">\n</span><span class="s5">===== &quot; </span><span class="s2">+ </span><span class="s0">title </span><span class="s2">+ </span><span class="s5">&quot; =====&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s5">&quot;Full Decision Tree:&quot;</span><span class="s2">);</span>
+        <span class="s0">printTree</span><span class="s2">(</span><span class="s0">root</span><span class="s2">, </span><span class="s5">&quot;&quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s5">&quot;</span><span class="s1">\n</span><span class="s5">Path for Current Inputs:&quot;</span><span class="s2">);</span>
+
+        <span class="s0">Node current </span><span class="s2">= </span><span class="s0">root</span><span class="s2">;</span>
+
+        <span class="s1">while </span><span class="s2">(!</span><span class="s0">current</span><span class="s2">.</span><span class="s0">leaf</span><span class="s2">) {</span>
+
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s0">current</span><span class="s2">.</span><span class="s0">text </span><span class="s2">+ </span><span class="s5">&quot; -&gt; &quot; </span><span class="s2">+</span>
+                            <span class="s2">(</span><span class="s0">current</span><span class="s2">.</span><span class="s0">answer </span><span class="s2">? </span><span class="s5">&quot;YES&quot; </span><span class="s2">: </span><span class="s5">&quot;NO&quot;</span><span class="s2">)</span>
+            <span class="s2">);</span>
+
+            <span class="s1">if </span><span class="s2">(</span><span class="s0">current</span><span class="s2">.</span><span class="s0">answer</span><span class="s2">) {</span>
+                <span class="s0">current </span><span class="s2">= </span><span class="s0">current</span><span class="s2">.</span><span class="s0">yesBranch</span><span class="s2">;</span>
+            <span class="s2">} </span><span class="s1">else </span><span class="s2">{</span>
+                <span class="s0">current </span><span class="s2">= </span><span class="s0">current</span><span class="s2">.</span><span class="s0">noBranch</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s5">&quot;Final Action: &quot; </span><span class="s2">+ </span><span class="s0">current</span><span class="s2">.</span><span class="s0">text</span><span class="s2">);</span>
+
+        <span class="s1">return </span><span class="s0">current</span><span class="s2">.</span><span class="s0">text</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Recursively display the complete tree</span>
+    <span class="s1">private static void </span><span class="s0">printTree</span><span class="s2">(</span><span class="s0">Node node</span><span class="s2">, </span><span class="s0">String indent</span><span class="s2">) {</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">node</span><span class="s2">.</span><span class="s0">leaf</span><span class="s2">) {</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                    <span class="s0">indent </span><span class="s2">+ </span><span class="s5">&quot;ACTION: &quot; </span><span class="s2">+ </span><span class="s0">node</span><span class="s2">.</span><span class="s0">text</span>
+            <span class="s2">);</span>
+            <span class="s1">return</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span>
+                <span class="s0">indent </span><span class="s2">+ </span><span class="s5">&quot;QUESTION: &quot; </span><span class="s2">+ </span><span class="s0">node</span><span class="s2">.</span><span class="s0">text</span>
+        <span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s0">indent </span><span class="s2">+ </span><span class="s5">&quot;  YES:&quot;</span><span class="s2">);</span>
+        <span class="s0">printTree</span><span class="s2">(</span><span class="s0">node</span><span class="s2">.</span><span class="s0">yesBranch</span><span class="s2">, </span><span class="s0">indent </span><span class="s2">+ </span><span class="s5">&quot;    &quot;</span><span class="s2">);</span>
+
+        <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s0">indent </span><span class="s2">+ </span><span class="s5">&quot;  NO:&quot;</span><span class="s2">);</span>
+        <span class="s0">printTree</span><span class="s2">(</span><span class="s0">node</span><span class="s2">.</span><span class="s0">noBranch</span><span class="s2">, </span><span class="s0">indent </span><span class="s2">+ </span><span class="s5">&quot;    &quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

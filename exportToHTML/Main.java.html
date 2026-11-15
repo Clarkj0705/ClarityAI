@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Main.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Main.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">import </span><span class="s0">java</span><span class="s2">.</span><span class="s0">util</span><span class="s2">.</span><span class="s0">Scanner</span><span class="s2">;</span>
+
+<span class="s1">public class </span><span class="s0">Main </span><span class="s2">{</span>
+
+    <span class="s1">public static void </span><span class="s0">main</span><span class="s2">(</span><span class="s0">String</span><span class="s2">[] </span><span class="s0">args</span><span class="s2">) {</span>
+
+        <span class="s0">Scanner input </span><span class="s2">= </span><span class="s1">new </span><span class="s0">Scanner</span><span class="s2">(</span><span class="s0">System</span><span class="s2">.</span><span class="s0">in</span><span class="s2">);</span>
+
+        <span class="s3">// Create scenario objects</span>
+        <span class="s0">CampusRoute campus </span><span class="s2">= </span><span class="s1">new </span><span class="s0">CampusRoute</span><span class="s2">(</span><span class="s0">input</span><span class="s2">);</span>
+        <span class="s0">SecureSteps secure </span><span class="s2">= </span><span class="s1">new </span><span class="s0">SecureSteps</span><span class="s2">(</span><span class="s0">input</span><span class="s2">);</span>
+
+        <span class="s1">int </span><span class="s0">choice</span><span class="s2">;</span>
+
+        <span class="s1">do </span><span class="s2">{</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;</span><span class="s1">\n</span><span class="s4">====================&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;      CLARITYAI&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;====================&quot;</span><span class="s2">);</span>
+
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;1. CampusRoute&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;2. SecureSteps&quot;</span><span class="s2">);</span>
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;0. Exit&quot;</span><span class="s2">);</span>
+
+            <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">print</span><span class="s2">(</span><span class="s4">&quot;Choose a scenario: &quot;</span><span class="s2">);</span>
+            <span class="s0">choice </span><span class="s2">= </span><span class="s0">input</span><span class="s2">.</span><span class="s0">nextInt</span><span class="s2">();</span>
+
+            <span class="s1">switch </span><span class="s2">(</span><span class="s0">choice</span><span class="s2">) {</span>
+
+                <span class="s1">case </span><span class="s5">1</span><span class="s2">:</span>
+                    <span class="s0">campus</span><span class="s2">.</span><span class="s0">run</span><span class="s2">();</span>
+                    <span class="s1">break</span><span class="s2">;</span>
+
+                <span class="s1">case </span><span class="s5">2</span><span class="s2">:</span>
+                    <span class="s0">secure</span><span class="s2">.</span><span class="s0">run</span><span class="s2">();</span>
+                    <span class="s1">break</span><span class="s2">;</span>
+
+                <span class="s1">case </span><span class="s5">0</span><span class="s2">:</span>
+                    <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Thank you for using ClarityAI!&quot;</span><span class="s2">);</span>
+                    <span class="s1">break</span><span class="s2">;</span>
+
+                <span class="s1">default</span><span class="s2">:</span>
+                    <span class="s0">System</span><span class="s2">.</span><span class="s0">out</span><span class="s2">.</span><span class="s0">println</span><span class="s2">(</span><span class="s4">&quot;Invalid choice. Try again.&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+        <span class="s2">} </span><span class="s1">while </span><span class="s2">(</span><span class="s0">choice </span><span class="s2">!= </span><span class="s5">0</span><span class="s2">);</span>
+
+        <span class="s0">input</span><span class="s2">.</span><span class="s0">close</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
